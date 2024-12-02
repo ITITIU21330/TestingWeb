@@ -1,0 +1,102 @@
+body {
+    background-image: url('../images/—Pngtree—creative\ blue\ black\ banner\ background_1188686.jpg');
+    color: white;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.share-container {
+    background-color: white;
+    padding: 20px;
+    max-width: 400px; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    height: auto;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: center;
+    color: black;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    color: black;
+}
+
+.options {
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.option {
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.option.facebook {
+    background-color: #3b5998;
+    color: white;
+}
+
+.option.facebook:hover {
+    background-color: #2d4373;
+}
+
+.option.email {
+    background-color: #cae0ea;
+    color: #1575dc;
+}
+
+.option.email:hover {
+    background-color: #cae0ea;
+    border: 2px solid #007bff;
+}
+
+.option.copy-link {
+    background-color: #cae0ea;
+    color: #1575dc;
+}
+
+.option.copy-link:hover {
+    background-color: #cae0ea;
+    border: 2px solid #007bff;
+}
+
+.cancel-button {
+    background-color: transparent;
+    color: blue;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    width: fit-content;
+}

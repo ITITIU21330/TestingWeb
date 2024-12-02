@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tiêu đề trang web của bạn">
+    <meta property="og:description" content="Mô tả nội dung bạn muốn chia sẻ">
+    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/image.jpg">
+    <meta property="og:url" content="https://ititiu21330.github.io/TestingWeb/">
+    <meta property="og:type" content="website">
+    <title>Chia sẻ Facebook</title>
+    <style>
+        .share-facebook {
+            background-color: #3b5998;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .share-facebook:hover {
+            background-color: #2d4373;
+        }
+    </style>
+</head>
+<body>
+    <button class="share-facebook" onclick="shareOnFacebook()">Chia sẻ lên Facebook</button>
+
+    <script>
+        function shareOnFacebook() {
+            const shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=https://ititiu21330.github.io/TestingWeb/';
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+    </script>
+</body>
+</html>

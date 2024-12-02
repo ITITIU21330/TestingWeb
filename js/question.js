@@ -21,15 +21,13 @@ const nextBtn = document.getElementById("next-btn");
 const optionButtons = document.querySelectorAll(".option");
 
 function updateQuestion() {
-    // Cập nhật số câu hỏi
+
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
-    // Cập nhật câu hỏi
+
     questionText.textContent = questions[currentQuestionIndex];
 
-    // Điều chỉnh trạng thái của nút "Quay lại"
     prevBtn.disabled = currentQuestionIndex === 0;
 
-    // Cập nhật nội dung của nút "Tiếp theo" hoặc "Hoàn thành"
     if (currentQuestionIndex === questions.length - 1) {
         nextBtn.textContent = "Hoàn thành";
     } else {
@@ -82,14 +80,11 @@ function handleNextClick() {
     }
 }
 
-// Thêm sự kiện cho nút "Quay lại" và "Tiếp theo"
 prevBtn.addEventListener("click", handlePrevClick);
 nextBtn.addEventListener("click", handleNextClick);
 
-// Thêm sự kiện cho các lựa chọn
 optionButtons.forEach(button => {
     button.addEventListener("click", handleOptionClick);
 });
 
-// Cập nhật câu hỏi ban đầu
 updateQuestion();
