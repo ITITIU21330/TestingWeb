@@ -1,0 +1,48 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-image: url('../images/—Pngtree—creative\ blue\ black\ banner\ background_1188686.jpg');
+    color: white;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    text-align: center;
+    justify-content: center;
+}
+
+.result-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 8px;
+    background-color: #22385b;
+    height: auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.score-section {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#result-icon {
+    margin-top: 20px;
+}
+
+#result-link {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
