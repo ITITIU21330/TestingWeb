@@ -7,7 +7,7 @@
     <meta property="og:description" content="Số điểm đạt được từ khảo sát" />
     <meta property="og:url" content="https://ititiu21330.github.io/TestingWeb/score.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/images/score-0.jpg" id="ogImage" />
+    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/images/score-0.jpg" id="ogImage" /> <!-- Default image -->
     <title>Chia sẻ Facebook</title>
     <style>
         .share-facebook {
@@ -27,9 +27,11 @@
 </head>
 <body>
     <button class="share-facebook" onclick="shareOnFacebook()">Chia sẻ lên Facebook</button>
+
     <script>
-        var score = 7;
+        var score = 7; 
         var imageUrl = "https://ititiu21330.github.io/TestingWeb/images/score-" + score + ".jpg";
+        
         var ogImage = document.getElementById('ogImage');
         ogImage.setAttribute("content", imageUrl);
 
@@ -40,3 +42,4 @@
     </script>
 </body>
 </html>
+
