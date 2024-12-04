@@ -7,7 +7,7 @@
     <meta property="og:description" content="Số điểm đạt được từ khảo sát" />
     <meta property="og:url" content="https://ititiu21330.github.io/TestingWeb/score.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/images/score-0.jpg" id="ogImage" /> <!-- Default image -->
+    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/images/score-0.jpg" id="ogImage" />
     <title>Chia sẻ Facebook</title>
     <style>
         .share-facebook {
@@ -29,9 +29,35 @@
     <button class="share-facebook" onclick="shareOnFacebook()">Chia sẻ lên Facebook</button>
 
     <script>
-        var score = 7; 
-        var imageUrl = "https://ititiu21330.github.io/TestingWeb/images/score-" + score + ".jpg";
-        
+        var scoreElement = document.getElementById("score");
+        var score = scoreElement ? parseFloat(scoreElement.textContent) : 0;
+
+        var images = {
+            "0": "https://ititiu21330.github.io/TestingWeb/images/score-0.jpg",
+            "0.5": "https://ititiu21330.github.io/TestingWeb/images/score-0.5.jpg",
+            "1": "https://ititiu21330.github.io/TestingWeb/images/score-1.jpg",
+            "1.5": "https://ititiu21330.github.io/TestingWeb/images/score-1.5.jpg",
+            "2": "https://ititiu21330.github.io/TestingWeb/images/score-2.jpg",
+            "2.5": "https://ititiu21330.github.io/TestingWeb/images/score-2.5.jpg",
+            "3": "https://ititiu21330.github.io/TestingWeb/images/score-3.jpg",
+            "3.5": "https://ititiu21330.github.io/TestingWeb/images/score-3.5.jpg",
+            "4": "https://ititiu21330.github.io/TestingWeb/images/score-4.jpg",
+            "4.5": "https://ititiu21330.github.io/TestingWeb/images/score-4.5.jpg",
+            "5": "https://ititiu21330.github.io/TestingWeb/images/score-5.jpg",
+            "5.5": "https://ititiu21330.github.io/TestingWeb/images/score-5.5.jpg",
+            "6": "https://ititiu21330.github.io/TestingWeb/images/score-6.jpg",
+            "6.5": "https://ititiu21330.github.io/TestingWeb/images/score-6.5.jpg",
+            "7": "https://ititiu21330.github.io/TestingWeb/images/score-7.jpg",
+            "7.5": "https://ititiu21330.github.io/TestingWeb/images/score-7.5.jpg",
+            "8": "https://ititiu21330.github.io/TestingWeb/images/score-8.jpg",
+            "8.5": "https://ititiu21330.github.io/TestingWeb/images/score-8.5.jpg",
+            "9": "https://ititiu21330.github.io/TestingWeb/images/score-9.jpg",
+            "9.5": "https://ititiu21330.github.io/TestingWeb/images/score-9.5.jpg",
+            "10": "https://ititiu21330.github.io/TestingWeb/images/score-10.jpg",
+        };
+
+        var imageUrl = images[score.toFixed(1)] || images["0"];
+
         var ogImage = document.getElementById('ogImage');
         ogImage.setAttribute("content", imageUrl);
 
