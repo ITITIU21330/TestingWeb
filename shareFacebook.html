@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Khảo sát">
-    <meta property="og:description" content="Số điểm đạt được từ khảo sát">
-    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/image.jpg">
-    <meta property="og:url" content="https://ititiu21330.github.io/TestingWeb/score.html">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="Khảo sát" />
+    <meta property="og:description" content="Số điểm đạt được từ khảo sát" />
+    <meta property="og:url" content="https://ititiu21330.github.io/TestingWeb/score.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/images/score-0.jpg" id="ogImage" />
     <title>Chia sẻ Facebook</title>
     <style>
         .share-facebook {
@@ -27,5 +27,16 @@
 </head>
 <body>
     <button class="share-facebook" onclick="shareOnFacebook()">Chia sẻ lên Facebook</button>
+    <script>
+        var score = 7;
+        var imageUrl = "https://ititiu21330.github.io/TestingWeb/images/score-" + score + ".jpg";
+        var ogImage = document.getElementById('ogImage');
+        ogImage.setAttribute("content", imageUrl);
+
+        function shareOnFacebook() {
+            const shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=https://ititiu21330.github.io/TestingWeb/score.html';
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+    </script>
 </body>
 </html>
