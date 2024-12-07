@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('../images/—Pngtree—creative\ blue\ black\ banner\ background_1188686.jpg');
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: aliceblue;
+}
+p {
+  text-align: center;
+  color: aliceblue;
+}
+
+form {
+  text-align: center;          /* Căn giữa văn bản trong form */
+  padding: 10px 30px;          /* Khoảng cách bên trong form */
+  border-radius: 15px;          /* Góc bo tròn form */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  margin-bottom: 10px;
+}
+
+label, input, button {
+  display: block;
+  width: 100%;             
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+input {
+  width: 300px; /* Chiều rộng 300px */
+  height: 30px; /* Chiều cao 40px */
+  padding: 5px; /* Khoảng cách bên trong */
+  font-size: 16px; /* Kích thước chữ */
+  border: 1px solid #ccc; /* Viền nhạt */
+  border-radius: 4px; /* Bo góc input */
+}
+
+/* Định dạng button */
+button {
+  width: 310px; /* Chiều rộng giống với input */
+  height: 40px; /* Chiều cao lớn hơn input */
+  font-size: 16px; /* Kích thước chữ */
+  background-color: #1c8ad9; /* Màu nền xanh lá */
+  color: white; /* Màu chữ trắng */
+  border: none; /* Không có viền */
+  border-radius: 4px; /* Bo góc nút */
+  cursor: pointer; /* Con trỏ dạng nút bấm */
+}
+
+button:hover {
+  background-color: #025785;  /* Màu khi rê chuột qua nút */
+}
