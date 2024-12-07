@@ -1,30 +1,33 @@
 body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #032242;
-            color: white;
-            text-align: center;
-        }
-        .content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-        a {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/—Pngtree—creative\ blue\ black\ banner\ background_1188686.jpg');
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+.content {
+max-width: 600px;
+margin: 0 auto;
+text-align: center;
+justify-content: center;
+display: flex;
+align-items: center;
+flex-direction: column;
+}
+a {
             color: #0a7cf7;
             text-decoration: none;
         }
 
-        a:hover {
+a:hover {
             color: #08509c;
             text-decoration: underline;
         }
-        .result-image {
+.result-image {
             max-width: 100%;
             height: auto;
             margin-top: 20px;
