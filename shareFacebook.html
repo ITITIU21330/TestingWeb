@@ -7,7 +7,7 @@
     <meta property="og:description" content="Số điểm đạt được từ khảo sát" />
     <meta property="og:url" content="https://ititiu21330.github.io/TestingWeb/score.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://ititiu21330.github.io/TestingWeb/images/score-0.jpg" id="ogImage" />
+    <meta property="og:image" content="" id="ogImage" />
     <title>Chia sẻ Facebook</title>
     <style>
         .share-facebook {
@@ -29,37 +29,105 @@
     <button class="share-facebook" onclick="shareOnFacebook()">Chia sẻ lên Facebook</button>
 
     <script>
-        var scoreElement = document.getElementById("score");
-        var score = scoreElement ? parseFloat(scoreElement.textContent) : 0;
+        const score = parseFloat(localStorage.getItem('score')) || 0;
+let resultImage = '';
+let ogImage = '';
 
-        var images = {
-            "0": "https://ititiu21330.github.io/TestingWeb/images/score-0.jpg",
-            "0.5": "https://ititiu21330.github.io/TestingWeb/images/score-0.5.jpg",
-            "1": "https://ititiu21330.github.io/TestingWeb/images/score-1.jpg",
-            "1.5": "https://ititiu21330.github.io/TestingWeb/images/score-1.5.jpg",
-            "2": "https://ititiu21330.github.io/TestingWeb/images/score-2.jpg",
-            "2.5": "https://ititiu21330.github.io/TestingWeb/images/score-2.5.jpg",
-            "3": "https://ititiu21330.github.io/TestingWeb/images/score-3.jpg",
-            "3.5": "https://ititiu21330.github.io/TestingWeb/images/score-3.5.jpg",
-            "4": "https://ititiu21330.github.io/TestingWeb/images/score-4.jpg",
-            "4.5": "https://ititiu21330.github.io/TestingWeb/images/score-4.5.jpg",
-            "5": "https://ititiu21330.github.io/TestingWeb/images/score-5.jpg",
-            "5.5": "https://ititiu21330.github.io/TestingWeb/images/score-5.5.jpg",
-            "6": "https://ititiu21330.github.io/TestingWeb/images/score-6.jpg",
-            "6.5": "https://ititiu21330.github.io/TestingWeb/images/score-6.5.jpg",
-            "7": "https://ititiu21330.github.io/TestingWeb/images/score-7.jpg",
-            "7.5": "https://ititiu21330.github.io/TestingWeb/images/score-7.5.jpg",
-            "8": "https://ititiu21330.github.io/TestingWeb/images/score-8.jpg",
-            "8.5": "https://ititiu21330.github.io/TestingWeb/images/score-8.5.jpg",
-            "9": "https://ititiu21330.github.io/TestingWeb/images/score-9.jpg",
-            "9.5": "https://ititiu21330.github.io/TestingWeb/images/score-9.5.jpg",
-            "10": "https://ititiu21330.github.io/TestingWeb/images/score-10.jpg",
-        };
+switch (true) {
+    case (score == 0):
+        resultImage = 'https://ititiu21330.github.io/TestingWeb/images/score-0.jpg';  // Thay bằng URL thực
+        ogImage = resultImage;
+        break;
+    case (score == 0.5):
+        resultImage = 'https://ititiu21330.github.io/TestingWeb/images/score-0.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 1):
+        resultImage = 'https://ititiu21330.github.io/TestingWeb/images/score-1.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 1.5):
+        resultImage = 'https://example.com/images/score-1.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 2):
+        resultImage = 'https://example.com/images/score-2.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 2.5):
+        resultImage = 'https://example.com/images/score-2.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 3):
+        resultImage = 'https://example.com/images/score-3.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 3.5):
+        resultImage = 'https://example.com/images/score-3.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 4):
+        resultImage = 'https://example.com/images/score-4.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 4.5):
+        resultImage = 'https://example.com/images/score-4.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 5):
+        resultImage = 'https://example.com/images/score-5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 5.5):
+        resultImage = 'https://example.com/images/score-5.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 6):
+        resultImage = 'https://example.com/images/score-6.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 6.5):
+        resultImage = 'https://example.com/images/score-6.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 7):
+        resultImage = 'https://example.com/images/score-7.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 7.5):
+        resultImage = 'https://example.com/images/score-7.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 8):
+        resultImage = 'https://example.com/images/score-8.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 8.5):
+        resultImage = 'https://example.com/images/score-8.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 9):
+        resultImage = 'https://example.com/images/score-9.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 9.5):
+        resultImage = 'https://example.com/images/score-9.5.jpg';
+        ogImage = resultImage;
+        break;
+    case (score == 10):
+        resultImage = 'https://example.com/images/score-10.jpg';
+        ogImage = resultImage;
+        break;
+    default:
+        break;
+}
 
-        var imageUrl = images[score.toFixed(1)] || images["0"];
+// Update the image displayed on the page
+document.getElementById('result-image').src = resultImage;
+document.getElementById('score').textContent = score;
 
-        var ogImage = document.getElementById('ogImage');
-        ogImage.setAttribute("content", imageUrl);
+// Update the Open Graph image dynamically
+document.getElementById('og-image').setAttribute('content', ogImage);
 
         function shareOnFacebook() {
             const shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=https://ititiu21330.github.io/TestingWeb/score.html';
