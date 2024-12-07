@@ -1,12 +1,12 @@
-        body {
+body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 20px;
             background-image: url('images/images/—Pngtree—creative blue black banner background_1188686.jpg');
             color: white;
             text-align: center;
-        }
-        .content {
+}
+.content {
             max-width: 600px;
             margin: 0 auto;
             text-align: center;
@@ -14,18 +14,18 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-        }
-        a {
+}
+a {
             color: #0a7cf7;
             text-decoration: none;
-        }
+}
 
-        a:hover {
+a:hover {
             color: #08509c;
             text-decoration: underline;
-        }
-        .result-image {
+}
+.result-image {
             max-width: 100%;
             height: auto;
             margin-top: 20px;
-        }
+}
