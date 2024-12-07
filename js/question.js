@@ -12,6 +12,8 @@ const questions = [
 ];
 
 let currentQuestionIndex = 0;
+let scores = Array(questions.length).fill(0);
+let answeredQuestions = Array(questions.length).fill(false);
 let totalScore = 0;
 
 const questionNumber = document.getElementById("question-number");
@@ -23,10 +25,10 @@ const optionButtons = document.querySelectorAll(".option");
 function updateQuestion() {
 
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
-
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
+    nextBtn.disabled = !answeredQuestions[currentQuestionIndex];
 
     if (currentQuestionIndex === questions.length - 1) {
         nextBtn.textContent = "Hoàn thành";
@@ -49,10 +51,16 @@ function handleOptionClick(event) {
         score = 0;
     }
 
-    totalScore += score;
+    totalScore -= scores[currentQuestionIndex]; // Trừ điểm cũ
+    scores[currentQuestionIndex] = score; // Cập nhật điểm mới
+    totalScore += score; 
 
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
+
+    answeredQuestions[currentQuestionIndex] = true;
+
+    nextBtn.disabled = false;
 
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
