@@ -9,7 +9,8 @@
         function handleLogin() {
             const email = document.querySelector('input[type="email"]').value;
             if (email) {
-                window.location.href = 'https://workspace.google.com/intl/vi/gmail/';
+                localStorage.setItem('customerName', email);
+                window.location.href = 'contendEmail.html';
             } else {
                 alert("Vui lòng nhập email hợp lệ!");
             }
@@ -26,7 +27,7 @@
             <p>Ấn enter sau mỗi email để xác nhận</p>
             <div class="navigation">
                 <button class="nav-btn" id="prev-btn" onclick="window.location.href = 'share.html';"> Quay lại </button>
-                <button class="nav-btn next" id="next-btn">Gửi Email</button>
+                <button type="submit" class="nav-btn next" id="next-btn">Gửi Email</button>
             </div>
         </form>
     </div>
