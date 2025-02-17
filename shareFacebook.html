@@ -29,7 +29,7 @@
         function shareOnFacebook() {
             const currentUrl = window.location.href;
             const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
-            window.open(shareUrl, '_blank', 'width=600,height=400');
+            window.open(shareUrl, '_blank', 'width=600,height=400,noopener,noreferrer');
         }
     </script>
 </body>
