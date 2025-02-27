@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khảo sát</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <script>
+        function handleLogin() {
+            const email = document.querySelector('input[type="email"]').value;
+            if (email) {
+                window.location.href = "instruct.html";
+            } else {
+                alert("Vui lòng nhập email hợp lệ!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>ĐÁNH GIÁ MỨC ĐỘ TRƯỞNG THÀNH<br> VỀ QUẢN TRỊ TRẢI NGHIỆM KHÁCH HÀNG</p>
+    <h1>Công ty bạn trưởng<br> thành như thế nào<br> trong việc lắng nghe<br> khách hàng?</h1>
+    <p>Đánh giá khả năng của bạn trong việc lắng nghe,<br> hiểu và đáp ứng các tín hiệu từ khách hàng</p>
+    <form onsubmit="event.preventDefault(); handleLogin();">
+        <label for="username">Email:</label>
+        <input type="email" id="username" name="username" placeholder="Địa chỉ Email của bạn" required>
+        <button type="submit">
+            Bắt đầu <i class="fas fa-rocket"></i>
+        </button>
+    </form>
+</body>
+</html>
