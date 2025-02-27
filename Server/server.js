@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, 'js')));
 
 // Routes cho các file HTML
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', index.html'));
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 app.get('/question', (req, res) => {
