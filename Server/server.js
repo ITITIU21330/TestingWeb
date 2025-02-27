@@ -29,6 +29,9 @@ app.get('/score', (req, res) => {
   res.sendFile(path.join(__dirname, '../score.html'));
 });
 
+app.get('/instruct', (req, res) => {
+  res.sendFile(path.join(__dirname, '../instruct.html'));
+});
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
