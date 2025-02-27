@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'js')));
 
 // Routes for HTML files
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html')); // Assuming index.html is in the root folder
+  res.sendFile(path.join(__dirname, '..', 'index.html')); // Assuming index.html is in the root folder
 });
 
 app.get('/question', (req, res) => {
