@@ -150,14 +150,11 @@ if (!isNaN(score)) {
 }
 
 function updateOGImage(score) {
-  // Tạo đường dẫn tới hình ảnh tương ứng
   let imageUrl = `https://ititiu21330.github.io/TestingWeb/images/score-${score}.jpg`;
   
-  // Cập nhật thẻ Open Graph với đường dẫn hình ảnh
   document.getElementById("og-image").setAttribute("content", imageUrl);
 }
 
-// Gọi hàm cập nhật khi trang được tải
 updateOGImage(score);
 
 function goToSharePage() {
