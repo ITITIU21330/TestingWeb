@@ -10,27 +10,27 @@ app.use(express.static(path.join(__dirname, 'js')));
 
 // Routes cho các file HTML
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname,'index.html'));
+  res.sendFile(path.join(__dirname,'..' ,index.html'));
 });
 
 app.get('/question', (req, res) => {
-  res.sendFile(path.join(__dirname, 'question.html'));
+  res.sendFile(path.join(__dirname,'..' ,'question.html'));
 });
 
 app.get('/share', (req, res) => {
-  res.sendFile(path.join(__dirname, 'share.html'));
+  res.sendFile(path.join(__dirname, '..' ,'share.html'));
 });
 
 app.get('/shareFacebook', (req, res) => {
-  res.sendFile(path.join(__dirname,'shareFacebook.html'));
+  res.sendFile(path.join(__dirname,'..' ,'shareFacebook.html'));
 });
 
 app.get('/score', (req, res) => {
-  res.sendFile(path.join(__dirname,'score.html'));
+  res.sendFile(path.join(__dirname,'..' ,'score.html'));
 });
 
 app.get('/instruct', (req, res) => {
-  res.sendFile(path.join(__dirname,'instruct.html'));
+  res.sendFile(path.join(__dirname,'..' ,'instruct.html'));
 });
 
 // Khởi động server
