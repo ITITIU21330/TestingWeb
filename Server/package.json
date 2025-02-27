@@ -1,9 +1,9 @@
 {
-  "name": "my-server",
+  "name": "my-survey-app",
   "version": "1.0.0",
-  "main": "Server/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node Server/server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1"
