@@ -67,7 +67,7 @@ function handleOptionClick(event) {
         updateQuestion();
     } else {
         localStorage.setItem("score", totalScore.toFixed(1));
-        window.location.href = "score.html";
+        window.location.href = "score.ejs";
     }
 }
 
@@ -84,7 +84,7 @@ function handleNextClick() {
         updateQuestion();
     } else {
         localStorage.setItem("score", totalScore.toFixed(1));
-        window.location.href = "score.html";
+        window.location.href = "score.ejs";
     }
 }
 
