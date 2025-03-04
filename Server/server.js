@@ -11,8 +11,14 @@ app.set('views', path.join(__dirname, '../views'));
 
 app.get('/score', (req, res) => {
   let score = parseFloat(req.query.score) || 0;
-  let imageUrl = `https://TestingWeb.onrender.com/images/score-${score}.jpg`; 
+  if (score % 0.5 !== 0) {
+    score = Math.round(score * 2) / 2;
+  }
+  if (score > 10) score = 10;
+  
+  let imageUrl = `https://TestingWeb.onrender.com/images/score-${score}.jpg`;
   let pageUrl = `https://TestingWeb.onrender.com/score?score=${score}`;
+  
   res.render('score', { score, imageUrl, pageUrl });
 });
 
