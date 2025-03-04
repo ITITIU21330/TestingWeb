@@ -9,7 +9,7 @@
     --c6:#22385b;
 }
 
-.speedometer {
+.gauge-speedometer {
     width: 200px;
     height: 200px;
     padding: 35px;
@@ -34,7 +34,7 @@
 }
 
 
-.needle {
+.guage-needle {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -48,7 +48,7 @@
     align-items: center;
 }
 
-.needle::before {
+.guage-needle::before {
     content: "";
     position: absolute;
     width: 0;
@@ -62,7 +62,7 @@
 }
 
 
-.score {
+.guage-score {
     position: absolute;
     font-size: 15px;
     font-weight: bold;
@@ -72,7 +72,7 @@
     pointer-events: none;
 }
 
-.label {
+.guage-label {
     position: absolute;
     font-size: 10px;
     font-weight: bold;
@@ -83,9 +83,9 @@
     z-index: 5;
 }
 
-.label:nth-child(1) { transform: rotate(-90deg) translateX(10px) translateY(-120px); }
-.label:nth-child(2) { transform: rotate(-50deg) translateX(10px) translateY(-120px); }
-.label:nth-child(3) { transform: rotate(0deg) translateX(5px) translateY(-120px); }
-.label:nth-child(4) { transform: rotate(45deg) translateX(20px) translateY(-120px); }
-.label:nth-child(5) { transform: rotate(90deg) translateX(10px) translateY(-120px); }
+.guage-label:nth-child(1) { transform: rotate(-90deg) translateX(10px) translateY(-120px); }
+.guage-label:nth-child(2) { transform: rotate(-50deg) translateX(10px) translateY(-120px); }
+.guage-label:nth-child(3) { transform: rotate(0deg) translateX(5px) translateY(-120px); }
+.guage-label:nth-child(4) { transform: rotate(45deg) translateX(20px) translateY(-120px); }
+.guage-label:nth-child(5) { transform: rotate(90deg) translateX(10px) translateY(-120px); }
 
