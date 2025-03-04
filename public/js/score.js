@@ -1,4 +1,4 @@
-const needle = document.querySelector('.needle');
+const guage = document.querySelector('.guage-needle');
 
 function updateNeedleAnimated(targetScore) {
   let currentScore = 0;
@@ -8,15 +8,18 @@ function updateNeedleAnimated(targetScore) {
   const minAngle = -110;
   const maxAngle = 110;
 
-  function animate(currentTime) {
+ function animate(currentTime) {
       if (!startTime) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
       const progress = Math.min(timeElapsed / duration, 1);
 
       currentScore = targetScore * progress;
-      let angle = minAngle + (currentScore / maxScore) * (maxAngle - minAngle); 
+      let angle = minAngle + (currentScore / maxScore) * (maxAngle - minAngle);
+      console.log("Current Score: ", currentScore, "Angle: ", angle); 
 
-      needle.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`; 
+      angle = Math.max(minAngle, Math.min(angle, maxAngle));
+
+      guage.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
 
       if (progress < 1) {
           requestAnimationFrame(animate);
@@ -148,14 +151,6 @@ if (!isNaN(score)) {
     console.log("Điểm không hợp lệ.");
 }
 
-fetch(`/score?score=${score}`)
-.then(response => response.json())
-.then(data => {
-    document.getElementById('score').textContent = data.score;
-    document.getElementById('result-icon').src = data.imageUrl;
-    // Cập nhật các phần khác nếu cần
-})
-.catch(error => console.error('Error:', error));
 
 function goToSharePage() {
     window.location.href = 'share.html';
