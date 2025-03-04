@@ -4,37 +4,52 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Serve static files for CSS, images, and JS from the current directory
-app.use(express.static(path.join(__dirname, 'css')));
-app.use(express.static(path.join(__dirname, 'images')));
-app.use(express.static(path.join(__dirname, 'js')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes for HTML files (ensure the path to the files is correct)
+app.set('view engine', 'ejs'); 
+app.set('views', path.join(__dirname, 'views'));
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));  // index.html is one level up
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/question', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'question.html'));  // question.html is one level up
+  res.sendFile(path.join(__dirname, 'public', 'question.html'));
+});
+
+
+app.get('/score', (req, res) => {
+  let score = parseInt(req.query.score) || 0;  
+  let imageUrl = `https://TestingWeb.onrender.com/images/score-${score}.jpg`; 
+  let pageUrl = `https://TestingWeb.onrender.com/score?score=${score}`;
+
+  res.render('score', { score, imageUrl, pageUrl });
 });
 
 app.get('/share', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'share.html'));  // share.html is one level up
+  res.sendFile(path.join(__dirname, 'public', 'share.html'));
 });
 
 app.get('/shareFacebook', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'shareFacebook.html'));  // shareFacebook.html is one level up
-});
-
-app.get('/score', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'score.html'));  // score.html is one level up
+  res.sendFile(path.join(__dirname, 'public', 'shareFacebook.html'));
 });
 
 app.get('/instruct', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'instruct.html'));  // instruct.html is one level up
+  res.sendFile(path.join(__dirname, 'public', 'instruct.html'));
 });
 
-// Start the server
+app.get('/contendEmail', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'contendEmail.html'));
+});
+
+app.get('/shareEmail', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'shareEmail.html'));
+});
+
+app.get('/copyLink', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'copyLink.html'));
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

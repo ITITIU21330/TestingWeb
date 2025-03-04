@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả khảo sát</title>
+    <link rel="stylesheet" href="/css/score.css">
+    <link rel="stylesheet" href="/TestingWeb/css/guage.css">
+    <meta property="og:title" content="Số điểm đạt được khi khảo sát">
+    <meta property="og:description" content="Hiển thị số điểm">
+    <meta property="og:title" content="Your Survey Score" />
+    <meta property="og:description" content="Check out your score!" />
+    <meta id="og-image" property="og:image" content="<%= imageUrl %>" />
+    <meta property="og:url" content="<%= pageUrl %>" />
+    <meta property="og:type" content="website" />
+</head>
+<body>
+    <h1>ĐÁNH GIÁ MỨC ĐỘ TRƯỞNG THÀNH<br>VỀ QUẢN TRỊ KHÁCH HÀNG</h1>
+
+    <div class="result-container">
+        <div class="score-section">
+            <p><strong>SCORE: </strong><span id="score"><%= score %></span></p>
+            <p><strong>LEVEL: </strong><span id="level">-</span></p>
+        </div>
+        <div class="speedometer">
+            <div class="label">Ad hoc</div>
+            <div class="label">Establishing</div>
+            <div class="label">Performing</div>
+            <div class="label">Optimizing</div>
+            <div class="label">Embedded</div>
+            <div class="needle"></div>
+        </div>
+        <img id="result-icon" src="<%= imageUrl %>" alt="Kết quả" width="100">
+        <p id="result-text"></p>
+        <p>HƯỚNG GIẢI QUYẾT:</p>
+        <ul id="actions"></ul>
+        <a id="result-link" href="<%= pageUrl %>" target="_blank" class="cta">Tìm hiểu thêm</a>
+        <button class="share-button" onclick="goToSharePage()">Chia sẻ</button>
+    </div>
+
+    <script src="js/score.js"></script>
+</body>
+</html>

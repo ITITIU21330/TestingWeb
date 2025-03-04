@@ -2,28 +2,28 @@ const needle = document.querySelector('.needle');
 
 function updateNeedleAnimated(targetScore) {
   let currentScore = 0;
-  let maxScore = 10; // Giới hạn điểm tối đa
-  let duration = 2000; // Thời gian animation (2 giây)
+  let maxScore = 10;
+  let duration = 2000;
   let startTime = null;
-  const minAngle = -110; // Góc bắt đầu
-  const maxAngle = 110; // Góc kết thúc
+  const minAngle = -110;
+  const maxAngle = 110;
 
   function animate(currentTime) {
       if (!startTime) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1); // Đảm bảo không quá 1 (100%)
+      const progress = Math.min(timeElapsed / duration, 1);
 
-      currentScore = targetScore * progress; // Tính toán điểm hiện tại dựa trên quá trình animation
-      let angle = minAngle + (currentScore / maxScore) * (maxAngle - minAngle); // Tính góc quay từ -111 đến 111
+      currentScore = targetScore * progress;
+      let angle = minAngle + (currentScore / maxScore) * (maxAngle - minAngle); 
 
-      needle.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`; // Cập nhật needle
+      needle.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`; 
 
       if (progress < 1) {
-          requestAnimationFrame(animate); // Tiếp tục animation
+          requestAnimationFrame(animate);
       }
   }
 
-  requestAnimationFrame(animate); // Bắt đầu animation
+  requestAnimationFrame(animate);
 }
 
 const score = parseFloat(localStorage.getItem("score"));
@@ -140,7 +140,6 @@ if (!isNaN(score)) {
         ctaLink.textContent = result.key_actions_cta.text;
         ctaLink.href = result.key_actions_cta.url;
 
-        // Cập nhật needle với animation
         updateNeedleAnimated(score);
     } else {
         console.log("Score không hợp lệ hoặc không nằm trong mức đánh giá.");
@@ -149,13 +148,14 @@ if (!isNaN(score)) {
     console.log("Điểm không hợp lệ.");
 }
 
-function updateOGImage(score) {
-  let imageUrl = `https://ititiu21330.github.io/TestingWeb/images/score-${score}.jpg`;
-  
-  document.getElementById("og-image").setAttribute("content", imageUrl);
-}
-
-updateOGImage(score);
+fetch(`/score?score=${score}`)
+.then(response => response.json())
+.then(data => {
+    document.getElementById('score').textContent = data.score;
+    document.getElementById('result-icon').src = data.imageUrl;
+    // Cập nhật các phần khác nếu cần
+})
+.catch(error => console.error('Error:', error));
 
 function goToSharePage() {
     window.location.href = 'share.html';

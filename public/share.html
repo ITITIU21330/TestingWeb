@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share</title>
+    <link rel="stylesheet" href="css/share.css">
+</head>
+<body>
+    <div class="share-container">
+        <h1>Chia sẻ kết quả</h1>
+        <p>Đây là một số cách bạn có thể chia sẻ với<br>bạn bè đồng nghiệp của mình:</p>
+        <div class="options">
+            <button class="option facebook" onclick="shareOnFacebook()">Chia sẻ lên Facebook</button>
+            <button class="option email" onclick="goToShareEmail()">Chia sẻ qua Email</button>
+            <button class="option copy-link" onclick="copyResultLink()">Sao chép đường dẫn đến trang kết quả</button>
+        </div>
+        <button class="cancel-button" onclick="window.location.href = 'index.html';">Hủy</button>
+    </div>
+    <script src="js/share.js"></script>
+</body>
+</html>
