@@ -43,7 +43,7 @@ app.get('/contendEmail', (req, res) => {
 });
 
 app.get('/shareEmail', (req, res) => {
-  res.sendFile(path.join(__dirname, '"../public/shareEmail.html"));
+  res.sendFile(path.join(__dirname, "../public/shareEmail.html"));
 });
 
 app.get('/copyLink', (req, res) => {
