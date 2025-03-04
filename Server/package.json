@@ -6,6 +6,7 @@
     "start": "node Server/server.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ejs": "^3.1.9"
   }
 }
