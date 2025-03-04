@@ -19,12 +19,12 @@ app.get('/question', (req, res) => {
 
 
 app.get('/score', (req, res) => {
-  let score = parseInt(req.query.score) || 0;  
+  let score = parseFloat(req.query.score) || 0;
   let imageUrl = `https://TestingWeb.onrender.com/images/score-${score}.jpg`; 
   let pageUrl = `https://TestingWeb.onrender.com/score?score=${score}`;
-
   res.render('score', { score, imageUrl, pageUrl });
 });
+
 
 app.get('/share', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/share.html"));
