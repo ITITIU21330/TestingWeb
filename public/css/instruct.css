@@ -1,0 +1,81 @@
+/* Reset CSS */
+body, h1, h2, p, ul, li, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/—Pngtree—creative\ blue\ black\ banner\ background_1188686.jpg');
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  h1 {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .instruction-box {
+    background-color: #22385b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    height: 35vh;
+  }
+  
+  .instruction-box h2 {
+    font-size: 22px;
+    color: #7b9ecb;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .instruction-box p {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .instruction-box ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .instruction-box li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .start-button {
+    display: block;
+    background-color: #3683dc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .start-button:hover {
+    background-color: #2a6eb3;
+  }
+  
