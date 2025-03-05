@@ -73,12 +73,12 @@ h1 {
 }
 
 .option:hover {
-    background: rgb(83, 130, 218); 
-    color: white; 
-    border-color: rgb(17, 85, 212); 
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); 
-    transform: scale(1.05);
-    transition: all 0.3s ease;
+    background: rgb(172, 178, 190); /* Màu nền khi hover */
+    color: white; /* Màu chữ khi hover */
+    border-color: rgb(17, 85, 212); /* Màu viền khi hover */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng bóng đổ để làm nổi bật */
+    transform: scale(1.05); /* Phóng to một chút để tạo hiệu ứng nhấn mạnh */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động mượt mà */
 }
 
 .navigation {
