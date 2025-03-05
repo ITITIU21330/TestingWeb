@@ -21,9 +21,9 @@ const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const optionButtons = document.querySelectorAll(".option");
+const errorMessage = document.getElementById("error-message");
 
 function updateQuestion() {
-
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
     questionText.textContent = questions[currentQuestionIndex];
 
@@ -53,14 +53,15 @@ function handleOptionClick(event) {
 
     totalScore -= scores[currentQuestionIndex];
     scores[currentQuestionIndex] = score;
-    totalScore += score; 
+    totalScore += score;
 
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
     answeredQuestions[currentQuestionIndex] = true;
+    errorMessage.style.display = 'none'; // Ẩn thông báo lỗi khi đã chọn đáp án
 
-    nextBtn.disabled = false;
+    nextBtn.disabled = false; // Kích hoạt nút Tiếp theo
 
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
@@ -79,6 +80,11 @@ function handlePrevClick() {
 }
 
 function handleNextClick() {
+    if (!answeredQuestions[currentQuestionIndex]) {
+        errorMessage.style.display = 'block'; // Hiển thị thông báo lỗi khi chưa chọn đáp án
+        return;
+    }
+
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         updateQuestion();
@@ -96,3 +102,4 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
+
