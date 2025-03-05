@@ -12,12 +12,10 @@
     </a>
 
     <script>
-        function getScoreFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('score') || 0;
+        function getScoreFromLocalStorage() {
+            return localStorage.getItem('score') || 0; // Mặc định là 0 nếu không có điểm
         }
-
-        const score = getScoreFromURL();
+        const score = getScoreFromLocalStorage();
         const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://testingweb-iyxq.onrender.com/score?score=${score}`;
         document.getElementById("share-link").href = shareUrl;
         window.location.href = shareUrl;
