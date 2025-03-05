@@ -16,12 +16,13 @@ app.get('/score', (req, res) => {
   }
   if (score > 10) score = 10;
   
-  let imageUrl = `https://TestingWeb.onrender.com/images/score-${score}.jpg`;
-  
-  let pageUrl = `https://TestingWeb.onrender.com/score?score=${score}`;
+  let imageUrl = `/images/score-${score}.jpg`;
 
+  let pageUrl = `https://testingweb-iyxq.onrender.com/score?score=${score}`;
+  
   res.render('score', { score, imageUrl, pageUrl });
 });
+
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
