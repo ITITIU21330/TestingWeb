@@ -21,23 +21,19 @@ const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const optionButtons = document.querySelectorAll(".option");
-const errorMessage = document.getElementById("error-message");
 
 function updateQuestion() {
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
-    
-    // Ẩn nút "Tiếp theo" khi câu hỏi chưa được trả lời
-    if (answeredQuestions[currentQuestionIndex]) {
-        nextBtn.style.display = 'inline-block'; // Hiển thị nút "Tiếp theo"
-    } else {
-        nextBtn.style.display = 'none'; // Ẩn nút "Tiếp theo" nếu chưa trả lời
-    }
 
-    // Ẩn thông báo lỗi
-    errorMessage.style.display = 'none';
+    // Nếu đã trả lời câu hỏi thì hiển thị nút "Tiếp theo"
+    if (answeredQuestions[currentQuestionIndex]) {
+        nextBtn.style.display = 'inline-block';
+    } else {
+        nextBtn.style.display = 'none';
+    }
 }
 
 function handleOptionClick(event) {
@@ -58,13 +54,12 @@ function handleOptionClick(event) {
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
+    answeredQuestions[currentQuestionIndex] = true;
+
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
-    answeredQuestions[currentQuestionIndex] = true; // Đánh dấu câu hỏi đã được trả lời
-    updateQuestion(); // Cập nhật lại giao diện
-
-    // Tự động chuyển sang câu hỏi tiếp theo nếu không phải câu hỏi cuối
+    // Cập nhật lại giao diện khi đã trả lời và tự động chuyển sang câu hỏi tiếp theo nếu có
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         updateQuestion();
@@ -82,15 +77,6 @@ function handlePrevClick() {
 }
 
 function handleNextClick() {
-    if (!answeredQuestions[currentQuestionIndex]) {
-        // Nếu chưa trả lời câu hỏi, hiển thị thông báo lỗi
-        errorMessage.style.display = 'block';
-        return;
-    }
-
-    // Nếu đã trả lời, ẩn thông báo lỗi và tiếp tục
-    errorMessage.style.display = 'none';
-
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         updateQuestion();
@@ -108,4 +94,3 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
-
