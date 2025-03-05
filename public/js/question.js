@@ -30,12 +30,14 @@ function updateQuestion() {
 
     prevBtn.disabled = currentQuestionIndex === 0;
 
-    // Kiểm tra xem câu hỏi hiện tại đã được trả lời chưa để hiển thị nút "Tiếp theo" hoặc "Hoàn thành"
+    // Ẩn nút "Tiếp theo" theo yêu cầu, chỉ hiện khi quay lại câu hỏi cũ
+    nextBtn.style.display = answeredQuestions[currentQuestionIndex] && currentQuestionIndex < questions.length - 1 ? "inline-block" : "none";
+
+    // Câu hỏi 10: Hiển thị nút "Hoàn thành" thay thế "Tiếp theo"
     if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.style.display = "none"; 
         finishBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
+        nextBtn.style.display = "none";
     } else {
-        nextBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
         finishBtn.style.display = "none";
     }
 
