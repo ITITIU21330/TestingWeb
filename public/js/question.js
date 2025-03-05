@@ -49,6 +49,7 @@ function handleOptionClick(event) {
     const selectedOption = event.target.textContent;
     let score = 0;
 
+    // Handle different answers
     if (selectedOption === "Có") {
         score = 1;
     } else if (selectedOption === "Không rõ về vấn đề này") {
@@ -57,12 +58,16 @@ function handleOptionClick(event) {
         score = 0;
     }
 
+    // Update scores
     totalScore -= scores[currentQuestionIndex];
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
+    // Mark the question as answered
     answeredQuestions[currentQuestionIndex] = true;
-    updateQuestion();  // Automatically move to next question after answering
+
+    // Update the UI based on the current question
+    updateQuestion();  // Automatically move to the next question after answering
 
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
@@ -91,4 +96,3 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
-
