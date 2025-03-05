@@ -1,32 +1,29 @@
 const guage = document.querySelector('.guage-needle');
 
 function updateNeedleAnimated(targetScore) {
-  let currentScore = 0;
-  let maxScore = 10;
-  let duration = 2000;
-  let startTime = null;
-  const minAngle = -110;
-  const maxAngle = 110;
+    let currentScore = 0;
+    const maxScore = 10;
+    const duration = 2000;
+    let startTime = null;
+    const minAngle = -110;
+    const maxAngle = 110;
 
- function animate(currentTime) {
-      if (!startTime) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
+    function animate(currentTime) {
+        if (!startTime) startTime = currentTime; 
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
 
-      currentScore = targetScore * progress;
-      let angle = minAngle + (currentScore / maxScore) * (maxAngle - minAngle);
-      console.log("Current Score: ", currentScore, "Angle: ", angle); 
+        currentScore = targetScore * progress;
+        let angle = minAngle + (currentScore / maxScore) * (maxAngle - minAngle);
+        angle = Math.max(minAngle, Math.min(angle, maxAngle));
 
-      angle = Math.max(minAngle, Math.min(angle, maxAngle));
-
-      guage.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-
-      if (progress < 1) {
-          requestAnimationFrame(animate);
-      }
-  }
-
-  requestAnimationFrame(animate);
+        console.log("Current Score: ", currentScore, "Angle: ", angle); 
+        guage.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+    requestAnimationFrame(animate);
 }
 
 const score = parseFloat(localStorage.getItem("score"));
