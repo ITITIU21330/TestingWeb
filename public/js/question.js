@@ -35,6 +35,8 @@ function updateQuestion() {
     } else {
         nextBtn.textContent = "Tiếp theo";
     }
+
+    errorMessage.style.display = 'none';
 }
 
 function handleOptionClick(event) {
@@ -59,17 +61,9 @@ function handleOptionClick(event) {
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
     answeredQuestions[currentQuestionIndex] = true;
-    errorMessage.style.display = 'none'; // Ẩn thông báo lỗi khi đã chọn đáp án
+    nextBtn.disabled = false; // Kích hoạt nút Tiếp theo khi đã trả lời
 
-    nextBtn.disabled = false; // Kích hoạt nút Tiếp theo
-
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        updateQuestion();
-    } else {
-        localStorage.setItem("score", totalScore.toFixed(1));
-        window.location.href = `/score?score=${totalScore.toFixed(1)}`;
-    }
+    updateQuestion();
 }
 
 function handlePrevClick() {
@@ -81,7 +75,7 @@ function handlePrevClick() {
 
 function handleNextClick() {
     if (!answeredQuestions[currentQuestionIndex]) {
-        errorMessage.style.display = 'block'; // Hiển thị thông báo lỗi khi chưa chọn đáp án
+        errorMessage.style.display = 'block';
         return;
     }
 
@@ -102,4 +96,3 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
-
