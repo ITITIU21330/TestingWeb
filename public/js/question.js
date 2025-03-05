@@ -20,22 +20,17 @@ const questionNumber = document.getElementById("question-number");
 const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
-const finishBtn = document.getElementById("finish-btn");
 const optionButtons = document.querySelectorAll(".option");
 
 function updateQuestion() {
-    questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
+    questionNumber.textContent = CÂU HỎI ${currentQuestionIndex + 1}/${questions.length};
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
-
-    // Hiển thị hoặc ẩn nút "Tiếp theo" và "Hoàn thành"
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.style.display = "none"; 
-        finishBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
+    if (answeredQuestions[currentQuestionIndex]) {
+        nextBtn.style.display = 'inline-block';
     } else {
-        nextBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
-        finishBtn.style.display = "none";
+        nextBtn.style.display = 'none';
     }
 }
 
@@ -43,20 +38,31 @@ function handleOptionClick(event) {
     if (currentQuestionIndex >= questions.length) return;
 
     const selectedOption = event.target.textContent;
-    let score = selectedOption === "Có" ? 1 : selectedOption === "Không rõ về vấn đề này" ? 0.5 : 0;
 
-    // Cập nhật điểm
+    let score = 0;
+    if (selectedOption === "Có") {
+        score = 1;
+    } else if (selectedOption === "Không rõ về vấn đề này") {
+        score = 0.5;
+    } else {
+        score = 0;
+    }
+
     totalScore -= scores[currentQuestionIndex];
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
-    // Đánh dấu câu hỏi đã được trả lời
     answeredQuestions[currentQuestionIndex] = true;
 
-    console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
-    console.log(`Tổng điểm hiện tại: ${totalScore}`);
-
-    updateQuestion(); // Cập nhật lại giao diện ngay khi chọn đáp án
+    console.log(Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score});
+    console.log(Tổng điểm hiện tại: ${totalScore});
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuestion();
+    } else {
+        localStorage.setItem("score", totalScore.toFixed(1));
+        window.location.href = /score?score=${totalScore.toFixed(1)};
+    }
 }
 
 function handlePrevClick() {
@@ -70,18 +76,17 @@ function handleNextClick() {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         updateQuestion();
+    } else {
+        localStorage.setItem("score", totalScore.toFixed(1));
+        window.location.href = /score?score=${totalScore.toFixed(1)};
     }
 }
 
-function handleFinishClick() {
-    localStorage.setItem("score", totalScore.toFixed(1));
-    window.location.href = `/score?score=${totalScore.toFixed(1)}`;
-}
-
-// Gán sự kiện cho các nút
 prevBtn.addEventListener("click", handlePrevClick);
 nextBtn.addEventListener("click", handleNextClick);
-finishBtn.addEventListener("click", handleFinishClick);
-optionButtons.forEach(button => button.addEventListener("click", handleOptionClick));
+
+optionButtons.forEach(button => {
+    button.addEventListener("click", handleOptionClick);
+});
 
 updateQuestion();
