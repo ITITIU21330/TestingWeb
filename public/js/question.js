@@ -21,6 +21,8 @@ const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const optionButtons = document.querySelectorAll(".option");
+const errorMessage = document.getElementById("error-message");
+const infoText = document.getElementById("info-text"); // Dòng chữ nhỏ thêm vào
 
 function updateQuestion() {
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
@@ -28,11 +30,21 @@ function updateQuestion() {
 
     prevBtn.disabled = currentQuestionIndex === 0;
 
-    // Nếu đã trả lời câu hỏi thì hiển thị nút "Tiếp theo"
-    if (answeredQuestions[currentQuestionIndex]) {
-        nextBtn.style.display = 'inline-block';
+    // Nếu là câu hỏi cuối cùng, hiển thị "Hoàn thành" và thêm dòng chữ nhỏ
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.textContent = "Hoàn thành";
+        infoText.style.display = "block"; // Hiển thị dòng chữ nhỏ
+        nextBtn.disabled = false;
     } else {
-        nextBtn.style.display = 'none';
+        nextBtn.textContent = "Tiếp theo";
+        infoText.style.display = "none"; // Ẩn dòng chữ nhỏ
+    }
+
+    // Nút "Tiếp theo" chỉ hiển thị khi đã trả lời câu hỏi
+    if (!answeredQuestions[currentQuestionIndex]) {
+        nextBtn.style.display = "none"; // Ẩn nút tiếp theo khi chưa trả lời
+    } else {
+        nextBtn.style.display = "block"; // Hiển thị nút tiếp theo khi đã trả lời
     }
 }
 
@@ -54,19 +66,13 @@ function handleOptionClick(event) {
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
-    answeredQuestions[currentQuestionIndex] = true;
-
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
-    // Cập nhật lại giao diện khi đã trả lời và tự động chuyển sang câu hỏi tiếp theo nếu có
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        updateQuestion();
-    } else {
-        localStorage.setItem("score", totalScore.toFixed(1));
-        window.location.href = `/score?score=${totalScore.toFixed(1)}`;
-    }
+    answeredQuestions[currentQuestionIndex] = true;
+    nextBtn.style.display = 'block'; // Hiển thị nút tiếp theo khi đã trả lời
+
+    updateQuestion(); // Cập nhật câu hỏi và trạng thái của các nút
 }
 
 function handlePrevClick() {
@@ -77,12 +83,13 @@ function handlePrevClick() {
 }
 
 function handleNextClick() {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        updateQuestion();
-    } else {
+    // Khi câu hỏi thứ 10 đã được trả lời, sẽ chuyển hướng khi bấm "Hoàn thành"
+    if (currentQuestionIndex === questions.length - 1) {
         localStorage.setItem("score", totalScore.toFixed(1));
         window.location.href = `/score?score=${totalScore.toFixed(1)}`;
+    } else {
+        currentQuestionIndex++;
+        updateQuestion();
     }
 }
 
