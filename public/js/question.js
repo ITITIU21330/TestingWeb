@@ -29,6 +29,7 @@ function updateQuestion() {
 
     prevBtn.disabled = currentQuestionIndex === 0;
 
+    // Hiển thị hoặc ẩn nút "Tiếp theo" và "Hoàn thành"
     if (currentQuestionIndex === questions.length - 1) {
         nextBtn.style.display = "none"; 
         finishBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
@@ -44,10 +45,12 @@ function handleOptionClick(event) {
     const selectedOption = event.target.textContent;
     let score = selectedOption === "Có" ? 1 : selectedOption === "Không rõ về vấn đề này" ? 0.5 : 0;
 
-    totalScore -= scores[currentQuestionIndex]; // Loại bỏ điểm cũ trước khi cập nhật
+    // Cập nhật điểm
+    totalScore -= scores[currentQuestionIndex];
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
+    // Đánh dấu câu hỏi đã được trả lời
     answeredQuestions[currentQuestionIndex] = true;
 
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
