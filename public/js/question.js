@@ -30,10 +30,10 @@ function updateQuestion() {
 
     prevBtn.disabled = currentQuestionIndex === 0;
 
-    // Ẩn nút "Tiếp theo" theo yêu cầu, chỉ hiện khi quay lại câu hỏi cũ
+    // Kiểm tra nếu câu hỏi đã được trả lời thì hiện "Tiếp theo", ngược lại ẩn đi
     nextBtn.style.display = answeredQuestions[currentQuestionIndex] && currentQuestionIndex < questions.length - 1 ? "inline-block" : "none";
 
-    // Câu hỏi 10: Hiển thị nút "Hoàn thành" thay thế "Tiếp theo"
+    // Nếu là câu hỏi cuối thì hiện "Hoàn thành", ẩn "Tiếp theo"
     if (currentQuestionIndex === questions.length - 1) {
         finishBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
         nextBtn.style.display = "none";
@@ -80,7 +80,13 @@ function handleOptionClick(event) {
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
-    updateQuestion(); // Cập nhật lại giao diện ngay khi chọn đáp án
+    // Nếu chưa phải câu cuối, tự động chuyển sang câu hỏi tiếp theo
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuestion();
+    } else {
+        finishBtn.style.display = "inline-block";
+    }
 }
 
 function handlePrevClick() {
@@ -110,4 +116,3 @@ optionButtons.forEach(button => button.addEventListener("click", handleOptionCli
 
 // Cập nhật giao diện lần đầu
 updateQuestion();
-
