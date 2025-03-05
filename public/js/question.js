@@ -21,30 +21,25 @@ const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const optionButtons = document.querySelectorAll(".option");
-const errorMessage = document.getElementById("error-message");
-const infoText = document.getElementById("info-text"); // Dòng chữ nhỏ thêm vào
+const infoText = document.getElementById("info-text");
 
 function updateQuestion() {
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
+    nextBtn.style.display = 'none';  // Default next button is hidden
 
-    // Nếu là câu hỏi cuối cùng, hiển thị "Hoàn thành" và thêm dòng chữ nhỏ
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.textContent = "Hoàn thành";
-        infoText.style.display = "block"; // Hiển thị dòng chữ nhỏ
-        nextBtn.disabled = false;
-    } else {
-        nextBtn.textContent = "Tiếp theo";
-        infoText.style.display = "none"; // Ẩn dòng chữ nhỏ
+    // Show next button only for the last question (question 10)
+    if (currentQuestionIndex === questions.length - 1 && answeredQuestions[currentQuestionIndex]) {
+        nextBtn.style.display = 'inline-block';
     }
 
-    // Nút "Tiếp theo" chỉ hiển thị khi đã trả lời câu hỏi
-    if (!answeredQuestions[currentQuestionIndex]) {
-        nextBtn.style.display = "none"; // Ẩn nút tiếp theo khi chưa trả lời
+    // Show "Bấm hoàn thành để xem kết quả" for question 10
+    if (currentQuestionIndex === 9) {
+        infoText.style.display = answeredQuestions[currentQuestionIndex] ? 'block' : 'none';
     } else {
-        nextBtn.style.display = "block"; // Hiển thị nút tiếp theo khi đã trả lời
+        infoText.style.display = 'none';
     }
 }
 
@@ -52,8 +47,8 @@ function handleOptionClick(event) {
     if (currentQuestionIndex >= questions.length) return;
 
     const selectedOption = event.target.textContent;
-
     let score = 0;
+
     if (selectedOption === "Có") {
         score = 1;
     } else if (selectedOption === "Không rõ về vấn đề này") {
@@ -66,13 +61,11 @@ function handleOptionClick(event) {
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
+    answeredQuestions[currentQuestionIndex] = true;
+    updateQuestion();  // Automatically move to next question after answering
+
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
-
-    answeredQuestions[currentQuestionIndex] = true;
-    nextBtn.style.display = 'block'; // Hiển thị nút tiếp theo khi đã trả lời
-
-    updateQuestion(); // Cập nhật câu hỏi và trạng thái của các nút
 }
 
 function handlePrevClick() {
@@ -83,13 +76,10 @@ function handlePrevClick() {
 }
 
 function handleNextClick() {
-    // Khi câu hỏi thứ 10 đã được trả lời, sẽ chuyển hướng khi bấm "Hoàn thành"
-    if (currentQuestionIndex === questions.length - 1) {
+    // Go to the result page when the user clicks on "Hoàn thành"
+    if (currentQuestionIndex === questions.length - 1 && answeredQuestions[currentQuestionIndex]) {
         localStorage.setItem("score", totalScore.toFixed(1));
         window.location.href = `/score?score=${totalScore.toFixed(1)}`;
-    } else {
-        currentQuestionIndex++;
-        updateQuestion();
     }
 }
 
@@ -101,3 +91,4 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
+
