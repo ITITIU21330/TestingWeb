@@ -21,20 +21,16 @@ const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const optionButtons = document.querySelectorAll(".option");
-const infoText = document.getElementById("info-text");
 
 function updateQuestion() {
     questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
-    nextBtn.style.display = currentQuestionIndex === questions.length - 1 ? "inline-block" : "none";  // Only show nextBtn on question 10
-
-    // Show "Bấm hoàn thành để xem kết quả" for question 10
-    if (currentQuestionIndex === 9) {
-        infoText.style.display = 'block';
+    if (answeredQuestions[currentQuestionIndex]) {
+        nextBtn.style.display = 'inline-block';
     } else {
-        infoText.style.display = 'none';
+        nextBtn.style.display = 'none';
     }
 }
 
@@ -42,8 +38,8 @@ function handleOptionClick(event) {
     if (currentQuestionIndex >= questions.length) return;
 
     const selectedOption = event.target.textContent;
-    let score = 0;
 
+    let score = 0;
     if (selectedOption === "Có") {
         score = 1;
     } else if (selectedOption === "Không rõ về vấn đề này") {
@@ -57,10 +53,16 @@ function handleOptionClick(event) {
     totalScore += score;
 
     answeredQuestions[currentQuestionIndex] = true;
-    updateQuestion();  // Automatically move to next question after answering
 
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuestion();
+    } else {
+        localStorage.setItem("score", totalScore.toFixed(1));
+        window.location.href = `/score?score=${totalScore.toFixed(1)}`;
+    }
 }
 
 function handlePrevClick() {
@@ -71,8 +73,10 @@ function handlePrevClick() {
 }
 
 function handleNextClick() {
-    // Go to the result page when the user clicks on "Hoàn thành"
-    if (currentQuestionIndex === questions.length - 1) {
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuestion();
+    } else {
         localStorage.setItem("score", totalScore.toFixed(1));
         window.location.href = `/score?score=${totalScore.toFixed(1)}`;
     }
@@ -86,3 +90,4 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
+
