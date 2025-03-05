@@ -24,7 +24,7 @@ const optionButtons = document.querySelectorAll(".option");
 const infoText = document.getElementById("info-text");
 
 function updateQuestion() {
-    questionNumber.textContent = CÂU HỎI ${currentQuestionIndex + 1}/${questions.length};
+    questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
@@ -59,8 +59,8 @@ function handleOptionClick(event) {
     answeredQuestions[currentQuestionIndex] = true;
     updateQuestion();  // Automatically move to next question after answering
 
-    console.log(Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score});
-    console.log(Tổng điểm hiện tại: ${totalScore});
+    console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
+    console.log(`Tổng điểm hiện tại: ${totalScore}`);
 }
 
 function handlePrevClick() {
@@ -74,7 +74,7 @@ function handleNextClick() {
     // Go to the result page when the user clicks on "Hoàn thành"
     if (currentQuestionIndex === questions.length - 1) {
         localStorage.setItem("score", totalScore.toFixed(1));
-        window.location.href = /score?score=${totalScore.toFixed(1)};
+        window.location.href = `/score?score=${totalScore.toFixed(1)}`;
     }
 }
 
