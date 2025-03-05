@@ -73,7 +73,12 @@ h1 {
 }
 
 .option:hover {
-    border-color: rgb(42, 102, 215);
+    background: rgb(83, 130, 218); 
+    color: white; 
+    border-color: rgb(17, 85, 212); 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }
 
 .navigation {
