@@ -24,20 +24,15 @@ const optionButtons = document.querySelectorAll(".option");
 const infoText = document.getElementById("info-text");
 
 function updateQuestion() {
-    questionNumber.textContent = `CÂU HỎI ${currentQuestionIndex + 1}/${questions.length}`;
+    questionNumber.textContent = CÂU HỎI ${currentQuestionIndex + 1}/${questions.length};
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
-    nextBtn.style.display = 'none';  // Default next button is hidden
-
-    // Show next button only for the last question (question 10)
-    if (currentQuestionIndex === questions.length - 1 && answeredQuestions[currentQuestionIndex]) {
-        nextBtn.style.display = 'inline-block';
-    }
+    nextBtn.style.display = currentQuestionIndex === questions.length - 1 ? "inline-block" : "none";  // Only show nextBtn on question 10
 
     // Show "Bấm hoàn thành để xem kết quả" for question 10
     if (currentQuestionIndex === 9) {
-        infoText.style.display = answeredQuestions[currentQuestionIndex] ? 'block' : 'none';
+        infoText.style.display = 'block';
     } else {
         infoText.style.display = 'none';
     }
@@ -49,7 +44,6 @@ function handleOptionClick(event) {
     const selectedOption = event.target.textContent;
     let score = 0;
 
-    // Handle different answers
     if (selectedOption === "Có") {
         score = 1;
     } else if (selectedOption === "Không rõ về vấn đề này") {
@@ -58,19 +52,15 @@ function handleOptionClick(event) {
         score = 0;
     }
 
-    // Update scores
     totalScore -= scores[currentQuestionIndex];
     scores[currentQuestionIndex] = score;
     totalScore += score;
 
-    // Mark the question as answered
     answeredQuestions[currentQuestionIndex] = true;
+    updateQuestion();  // Automatically move to next question after answering
 
-    // Update the UI based on the current question
-    updateQuestion();  // Automatically move to the next question after answering
-
-    console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
-    console.log(`Tổng điểm hiện tại: ${totalScore}`);
+    console.log(Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score});
+    console.log(Tổng điểm hiện tại: ${totalScore});
 }
 
 function handlePrevClick() {
@@ -82,9 +72,9 @@ function handlePrevClick() {
 
 function handleNextClick() {
     // Go to the result page when the user clicks on "Hoàn thành"
-    if (currentQuestionIndex === questions.length - 1 && answeredQuestions[currentQuestionIndex]) {
+    if (currentQuestionIndex === questions.length - 1) {
         localStorage.setItem("score", totalScore.toFixed(1));
-        window.location.href = `/score?score=${totalScore.toFixed(1)}`;
+        window.location.href = /score?score=${totalScore.toFixed(1)};
     }
 }
 
