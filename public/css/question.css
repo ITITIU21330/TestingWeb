@@ -126,3 +126,26 @@ h1 {
     color: rgb(21, 80, 188);
     border-color: #4a90f8;
 }
+
+#finish-btn {
+    background: #3b82f6;
+    color: white; /* Màu chữ trắng */
+    border: none; /* Không có viền */
+    border-radius: 5px; /* Bo tròn các góc */
+    padding: 10px 20px; /* Khoảng cách bên trong nút */
+    font-size: 16px; /* Cỡ chữ */
+    cursor: pointer; /* Đổi con trỏ thành pointer khi hover */
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#finish-btn:hover {
+    background: #4a90f8; /* Màu nền thay đổi khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ nút khi hover */
+}
+
+#finish-btn:disabled {
+    background: #cccccc; /* Màu nền khi nút bị vô hiệu hóa */
+    color: #888888; /* Màu chữ khi nút bị vô hiệu hóa */
+    cursor: not-allowed; /* Hiển thị con trỏ không cho phép */
+}
+
