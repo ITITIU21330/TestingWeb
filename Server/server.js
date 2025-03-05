@@ -16,7 +16,7 @@ app.get('/score', (req, res) => {
   }
   if (score > 10) score = 10;
   
-  let imageUrl = `/images/score-${score}.jpg`;
+  let imageUrl = `https://TestingWeb.onrender.com/images/score-${score}.jpg`;
   
   let pageUrl = `https://TestingWeb.onrender.com/score?score=${score}`;
 
