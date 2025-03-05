@@ -41,7 +41,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 50%;
     background: radial-gradient(yellow 54%, #ccc 55%);
     display: flex;
