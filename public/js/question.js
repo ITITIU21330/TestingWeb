@@ -28,14 +28,15 @@ function updateQuestion() {
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
-    nextBtn.disabled = !answeredQuestions[currentQuestionIndex];
-
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.textContent = "Hoàn thành";
+    
+    // Ẩn nút "Tiếp theo" khi câu hỏi chưa được trả lời
+    if (answeredQuestions[currentQuestionIndex]) {
+        nextBtn.style.display = 'inline-block'; // Hiển thị nút "Tiếp theo"
     } else {
-        nextBtn.textContent = "Tiếp theo";
+        nextBtn.style.display = 'none'; // Ẩn nút "Tiếp theo" nếu chưa trả lời
     }
 
+    // Ẩn thông báo lỗi
     errorMessage.style.display = 'none';
 }
 
@@ -60,10 +61,17 @@ function handleOptionClick(event) {
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
-    answeredQuestions[currentQuestionIndex] = true;
-    nextBtn.disabled = false; // Kích hoạt nút Tiếp theo khi đã trả lời
+    answeredQuestions[currentQuestionIndex] = true; // Đánh dấu câu hỏi đã được trả lời
+    updateQuestion(); // Cập nhật lại giao diện
 
-    updateQuestion();
+    // Tự động chuyển sang câu hỏi tiếp theo nếu không phải câu hỏi cuối
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuestion();
+    } else {
+        localStorage.setItem("score", totalScore.toFixed(1));
+        window.location.href = `/score?score=${totalScore.toFixed(1)}`;
+    }
 }
 
 function handlePrevClick() {
@@ -75,9 +83,13 @@ function handlePrevClick() {
 
 function handleNextClick() {
     if (!answeredQuestions[currentQuestionIndex]) {
+        // Nếu chưa trả lời câu hỏi, hiển thị thông báo lỗi
         errorMessage.style.display = 'block';
         return;
     }
+
+    // Nếu đã trả lời, ẩn thông báo lỗi và tiếp tục
+    errorMessage.style.display = 'none';
 
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
@@ -96,3 +108,4 @@ optionButtons.forEach(button => {
 });
 
 updateQuestion();
+
