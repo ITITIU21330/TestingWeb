@@ -7,11 +7,20 @@
 </head>
 <body>
     <h1>Click below to share your score on Facebook</h1>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://ititiu21330.github.io/TestingWeb/score.html" target="_blank">
+    <a id="share-link" href="#" target="_blank">
         <button>Share on Facebook</button>
     </a>
+
     <script>
-        window.location.href = "https://www.facebook.com/sharer/sharer.php?u=https://ititiu21330.github.io/TestingWeb/score.html";
+        function getScoreFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('score') || 0;
+        }
+
+        const score = getScoreFromURL();
+        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://testingweb-iyxq.onrender.com/score?score=${score}`;
+        document.getElementById("share-link").href = shareUrl;
+        window.location.href = shareUrl;
     </script>
 </body>
 </html>
