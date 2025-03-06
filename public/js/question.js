@@ -16,7 +16,6 @@ let scores = Array(questions.length).fill(0);
 let answeredQuestions = Array(questions.length).fill(false);
 let totalScore = 0;
 
-// Lấy các phần tử từ DOM
 const questionNumber = document.getElementById("question-number");
 const questionText = document.getElementById("question-text");
 const prevBtn = document.getElementById("prev-btn");
@@ -29,11 +28,9 @@ function updateQuestion() {
     questionText.textContent = questions[currentQuestionIndex];
 
     prevBtn.disabled = currentQuestionIndex === 0;
-
-    // Kiểm tra nếu câu hỏi đã được trả lời thì hiện "Tiếp theo", ngược lại ẩn đi
+    
     nextBtn.style.display = answeredQuestions[currentQuestionIndex] && currentQuestionIndex < questions.length - 1 ? "inline-block" : "none";
 
-    // Nếu là câu hỏi cuối thì hiện "Hoàn thành", ẩn "Tiếp theo"
     if (currentQuestionIndex === questions.length - 1) {
         finishBtn.style.display = answeredQuestions[currentQuestionIndex] ? "inline-block" : "none";
         nextBtn.style.display = "none";
@@ -41,46 +38,42 @@ function updateQuestion() {
         finishBtn.style.display = "none";
     }
 
-    // Reset trạng thái nút đáp án
-    optionButtons.forEach(button => {
-        button.classList.remove("selected");
-    });
+optionButtons.forEach(button => {
+    button.classList.remove("selected");
+});
 
-    // Đánh dấu lựa chọn trước đó nếu đã chọn
-    if (answeredQuestions[currentQuestionIndex]) {
-        let selectedScore = scores[currentQuestionIndex];
-        optionButtons.forEach(button => {
-            if ((selectedScore === 1 && button.textContent === "Có") ||
-                (selectedScore === 0.5 && button.textContent === "Không rõ về vấn đề này") ||
-                (selectedScore === 0 && button.textContent === "Không")) {
-                button.classList.add("selected");
-            }
-        });
-    }
+// Đánh dấu lại đáp án đã chọn trước đó (nếu có)
+if (answeredQuestions[currentQuestionIndex]) {
+    let selectedScore = scores[currentQuestionIndex];
+    optionButtons.forEach(button => {
+        if ((selectedScore === 1 && button.textContent === "Có") ||
+            (selectedScore === 0.5 && button.textContent === "Không rõ về vấn đề này") ||
+            (selectedScore === 0 && button.textContent === "Không")) {
+            button.classList.add("selected");
+        }
+    });
+}
+
 }
 
 function handleOptionClick(event) {
     if (currentQuestionIndex >= questions.length) return;
 
-    // Xóa trạng thái chọn cũ
     optionButtons.forEach(button => button.classList.remove("selected"));
     event.target.classList.add("selected");
 
     const selectedOption = event.target.textContent;
     let score = selectedOption === "Có" ? 1 : selectedOption === "Không rõ về vấn đề này" ? 0.5 : 0;
 
-    // Cập nhật điểm
     totalScore -= scores[currentQuestionIndex];
     scores[currentQuestionIndex] = score;
     totalScore += score;
-
-    // Đánh dấu câu hỏi đã được trả lời
+    
     answeredQuestions[currentQuestionIndex] = true;
 
     console.log(`Điểm sau câu hỏi ${currentQuestionIndex + 1}: ${score}`);
     console.log(`Tổng điểm hiện tại: ${totalScore}`);
 
-    // Nếu chưa phải câu cuối, tự động chuyển sang câu hỏi tiếp theo
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         updateQuestion();
@@ -108,11 +101,9 @@ function handleFinishClick() {
     window.location.href = `/score?score=${totalScore.toFixed(1)}`;
 }
 
-// Gán sự kiện cho các nút
 prevBtn.addEventListener("click", handlePrevClick);
 nextBtn.addEventListener("click", handleNextClick);
 finishBtn.addEventListener("click", handleFinishClick);
 optionButtons.forEach(button => button.addEventListener("click", handleOptionClick));
 
-// Cập nhật giao diện lần đầu
 updateQuestion();
