@@ -6,13 +6,37 @@
     <title>Share to Email</title>
     <link rel="stylesheet" href="css/shareEmail.css">
     <script>
-        function handleLogin() {
-            const email = document.querySelector('input[type="email"]').value;
-            if (email) {
-                localStorage.setItem('customerName', email);
-                window.location.href = 'sendEmail.html';
-            } else {
+        async function handleSendEmail() {
+            const email = document.querySelector('input[type="email"]').value.trim();
+            if (!email) {
                 alert("Vui lòng nhập email hợp lệ!");
+                return;
+            }
+
+            const emailData = {
+                to: email,
+                subject: "Kết quả của bạn từ hệ thống",
+                text: "Đây là kết quả của bạn. Cảm ơn đã sử dụng dịch vụ!",
+                html: "<p>Đây là kết quả của bạn. Cảm ơn đã sử dụng dịch vụ!</p>"
+            };
+
+            try {
+                const response = await fetch('/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(emailData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert("Email đã được gửi thành công!");
+                } else {
+                    alert("Có lỗi xảy ra khi gửi email: " + result.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Không thể kết nối tới server!");
             }
         }
     </script>
@@ -21,15 +45,16 @@
     <div class="shareEmail-container">
         <h1>Chia sẻ qua Email</h1>
         <h2>Vui lòng cung cấp địa chỉ email mà bạn<br>muốn chia sẻ kết quả:</h2>
-        <form onsubmit="event.preventDefault(); handleLogin();">
+        <form onsubmit="event.preventDefault(); handleSendEmail();">
             <label for="username">Email:</label>
             <input type="email" id="username" name="username" placeholder="Địa chỉ Email nhận kết quả" required>
             <p>Ấn enter sau mỗi email để xác nhận</p>
             <div class="navigation">
-                <button class="nav-btn" id="prev-btn" onclick="window.location.href = 'share.html';"> Quay lại </button>
+                <button class="nav-btn" id="prev-btn" onclick="window.location.href = 'share.html';">Quay lại</button>
                 <button type="submit" class="nav-btn next" id="next-btn">Gửi Email</button>
             </div>
         </form>
     </div>
 </body>
 </html>
+
