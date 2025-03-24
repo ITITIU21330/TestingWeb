@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả của bạn</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #f4f4f4; 
+        }
+        h1 { 
+            color: #2d89ef; 
+        }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            margin-top: 20px; 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #1877f2;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0e5dc5;
+        }
+        .button-green {
+            background-color: #28a745;
+        }
+        .button-green:hover {
+            background-color: #218838;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chúc mừng bạn đã hoàn thành bài kiểm tra!</h1>
+    <p>Đây là kết quả của bạn:</p>
+    <img src="{{imageUrl}}" alt="Kết quả của bạn">
+    <p>Bạn có thể chia sẻ điểm số của mình lên Facebook để khoe với bạn bè!</p>
+    <a class="button" href="https://www.facebook.com/sharer/sharer.php?u={{pageUrl}}" target="_blank">Chia sẻ lên Facebook</a>
+    <br><br>
+    <a class="button button-green" href="{{pageUrl}}" target="_blank">Xem chi tiết kết quả</a>
+</body>
+</html>
