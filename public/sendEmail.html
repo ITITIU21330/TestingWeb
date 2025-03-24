@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gửi Email Tự Động</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    input, textarea, button { width: 100%; margin: 10px 0; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Gửi Email từ server</h2>
+  <form id="emailForm">
+    <input type="email" id="to" placeholder="Địa chỉ email người nhận" required>
+    <input type="text" id="subject" placeholder="Tiêu đề" required>
+    <textarea id="message" placeholder="Nội dung email" rows="5" required></textarea>
+    <button type="submit">Gửi Email</button>
+  </form>
+  <div id="status"></div>
+
+  <script>
+    const form = document.getElementById('emailForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const to = document.getElementById('to').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      const response = await fetch('/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to,
+          subject,
+          text: message,
+          html: `<p>${message}</p>`
+        })
+      });
+
+      const result = await response.json();
+      document.getElementById('status').innerText = result.message;
+    });
+  </script>
+</body>
+</html>
+
+
