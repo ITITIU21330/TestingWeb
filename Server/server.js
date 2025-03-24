@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -8,15 +9,12 @@ const port = process.env.PORT || 3000;
 
 // Đọc file tĩnh từ thư mục public
 app.use(express.static(path.join(__dirname, "../public")));
-
-// Dùng body parser để nhận JSON từ client
 app.use(express.json());
 
 // Cấu hình EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
 
-// Tạo transporter gửi mail
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -27,24 +25,29 @@ const transporter = nodemailer.createTransport({
 
 // Route gửi email
 app.post('/send-email', async (req, res) => {
-  const { to, subject, text, html } = req.body;
+  const { to } = req.body;
+  if (!to) return res.status(400).json({ message: 'Không có email nhận' });
+
+  const emailHtml = fs.readFileSync(path.join(__dirname, '../views/emailTemplate.html'), 'utf8');
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to,
-    subject,
-    text,
-    html,
+    subject: "Kết quả từ hệ thống",
+    text: "Bạn vừa nhận được kết quả từ hệ thống.",
+    html: emailHtml,
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Email sent successfully!' });
+    console.log(`Email sent to: ${to}`);
+    res.status(200).json({ message: 'Email đã được gửi thành công!' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Failed to send email', error });
+    res.status(500).json({ message: 'Gửi email thất bại', error });
   }
 });
+
 
 // Các route cũ
 app.get('/score', (req, res) => {
