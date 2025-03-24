@@ -1,14 +1,14 @@
 {
-  "name": "my-survey",
-  "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server/server.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "ejs": "^3.1.9"
-    "nodemailer": "6.9.3",
-    "dotenv": "16.3.1"
-  }
+    "name": "my-survey",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server/server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "ejs": "^3.1.9",
+        "nodemailer": "6.9.3",
+        "dotenv": "16.3.1"
+    }
 }
