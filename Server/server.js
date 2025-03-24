@@ -7,13 +7,8 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Đọc file tĩnh từ thư mục public
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
-
-// Cấu hình EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -23,31 +18,33 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Route gửi email
+// Gửi email với nội dung động
 app.post('/send-email', async (req, res) => {
-  const { to } = req.body;
-  if (!to) return res.status(400).json({ message: 'Không có email nhận' });
+  const { to, score } = req.body;
 
-  const emailHtml = fs.readFileSync(path.join(__dirname, '../views/emailTemplate.html'), 'utf8');
+  const fixedScore = Math.min(10, Math.round(score * 2) / 2); // Làm tròn 0.5 và giới hạn 10
+  const imageUrl = `https://testingweb-iyxq.onrender.com/images/score-${fixedScore}.jpg`;
+  const pageUrl = `https://testingweb-iyxq.onrender.com/score?score=${fixedScore}`;
+
+  // Đọc template và thay thế biến
+  let emailHtml = fs.readFileSync(path.join(__dirname, '../views/emailTemplate.html'), 'utf8');
+  emailHtml = emailHtml.replace('{{imageUrl}}', imageUrl).replace(/{{pageUrl}}/g, pageUrl);
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to,
-    subject: "Kết quả từ hệ thống",
-    text: "Bạn vừa nhận được kết quả từ hệ thống.",
+    subject: "Kết quả của bạn từ hệ thống",
     html: emailHtml,
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`Email sent to: ${to}`);
-    res.status(200).json({ message: 'Email đã được gửi thành công!' });
+    res.status(200).json({ message: 'Email đã gửi thành công!' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Gửi email thất bại', error });
   }
 });
-
 
 // Các route cũ
 app.get('/score', (req, res) => {
