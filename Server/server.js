@@ -80,8 +80,8 @@ app.get('/instruct', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/instruct.html"));
 });
 
-app.get('/contendEmail', (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/contendEmail.html"));
+app.get('/sendEmail', (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/sendEmail.html"));
 });
 
 app.get('/shareEmail', (req, res) => {
