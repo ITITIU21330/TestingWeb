@@ -27,8 +27,12 @@ app.post('/send-email', async (req, res) => {
   const pageUrl = `https://testingweb-iyxq.onrender.com/score?score=${fixedScore}`;
 
   // Đọc template và thay thế biến
-  let emailHtml = fs.readFileSync(path.join(__dirname, '../views/emailTemplate.html'), 'utf8');
-  emailHtml = emailHtml.replace('{{imageUrl}}', imageUrl).replace(/{{pageUrl}}/g, pageUrl);
+ const emailHtmlRaw = fs.readFileSync(path.join(__dirname, '../views/emailTemplate.html'), 'utf8');
+
+const emailHtml = emailHtmlRaw
+  .replace('{{imageUrl}}', imageUrl)
+  .replace('{{pageUrl}}', pageUrl);
+
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
